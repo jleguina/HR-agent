@@ -1,0 +1,43 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.1.0
+    hooks:
+    -   id: check-yaml
+    -   id: end-of-file-fixer
+    -   id: trailing-whitespace
+
+  - repo: https://github.com/python-poetry/poetry
+    rev: 1.2.2  # add version here
+    hooks:
+      - id: poetry-check
+#      - id: poetry-lock
+#        args:
+#          - --no-update
+
+  - repo: local
+    hooks:
+      - id: autoflake
+        name: autoflake
+        entry: poetry run autoflake --in-place --remove-all-unused-imports --remove-unused-variables --recursive .
+        language: system
+        types_or: [ python, pyi ]
+
+
+      - id: black
+        name: black
+        entry: poetry run black --config=pyproject.toml
+        language: system
+        types_or: [ python, pyi ]
+
+      - id: isort
+        name: isort
+        entry: poetry run isort --sp=pyproject.toml
+        language: system
+        types_or: [ python, pyi ]
+
+      - id: mypy
+        name: mypy
+        entry: poetry run mypy . --config-file=pyproject.toml
+        language: system
+        types_or: [ python, pyi ]
+        pass_filenames: false
