@@ -2,7 +2,7 @@
 
 ### Deployment
 
-Agent can be found at: https://hr-agent.streamlit.app/
+(DEPLOYMENT IS OFF) Agent can be found at: https://hr-agent.streamlit.app/
 
 ### Run locally
 
